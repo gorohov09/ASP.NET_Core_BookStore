@@ -1,4 +1,6 @@
-﻿namespace BookStore.Domain.Entities
+﻿using System.Text.RegularExpressions;
+
+namespace BookStore.Domain.Entities
 {
     public class Book
     {
@@ -18,9 +20,19 @@
             Title = title;
         }
 
-        internal static bool IsIsbn(string s)
+        internal static bool IsIsbn(string str)
         {
-            return false;
+            if (str == null)
+                return false;
+
+            //Fluent-синтаксис(текучий)
+            str = str.Replace("-", "") //Убрали дефисы
+                     .Replace(" ", "") //Убрали пробелы
+                     .ToUpper(); //Перевели в верхний регистр
+
+            return Regex.IsMatch(str, @"^ISBN\d{10}(\d{3})?$"); //Регулярное выражение(начинается с ISBN, потом идет любые 10 цифр или еще 3 цифры)
+            //^x - x - должен быть всегда в начале строки
+            //x$ - x - должен быть в конце строки
         }
     }
 }
