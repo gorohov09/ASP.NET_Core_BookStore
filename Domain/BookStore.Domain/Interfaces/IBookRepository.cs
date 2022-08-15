@@ -1,4 +1,6 @@
-﻿namespace BookStore.Domain
+﻿using BookStore.Domain.Entities;
+
+namespace BookStore.Domain.Interfaces
 {
     public interface IBookRepository
     {

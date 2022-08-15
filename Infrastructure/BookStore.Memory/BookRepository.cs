@@ -1,4 +1,5 @@
-﻿using BookStore.Domain;
+﻿using BookStore.Domain.Entities;
+using BookStore.Domain.Interfaces;
 using System.Linq;
 
 namespace BookStore.Memory
@@ -12,10 +13,20 @@ namespace BookStore.Memory
             new Book(3, "ISBN 12312-31231", "B. Kernighan", "C Programming Language"),
         };
 
+        public Book[] GetAllByIsbn(string isbn)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Book[] GetAllByTitle(string titlePart)
         {
             return _books.Where(book => book.Title.Contains(titlePart))
                 .ToArray();
+        }
+
+        public Book[] GetAllByTitleOrAuthor(string titleOrAuthor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

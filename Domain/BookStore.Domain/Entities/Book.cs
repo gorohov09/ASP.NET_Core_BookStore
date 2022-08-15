@@ -1,4 +1,4 @@
-﻿namespace BookStore.Domain
+﻿namespace BookStore.Domain.Entities
 {
     public class Book
     {
@@ -16,6 +16,11 @@
             Isbn = isbn;
             Author = author;
             Title = title;
+        }
+
+        internal static bool IsIsbn(string s)
+        {
+            return false;
         }
     }
 }

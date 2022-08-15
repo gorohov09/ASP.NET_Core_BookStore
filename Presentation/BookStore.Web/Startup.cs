@@ -1,4 +1,4 @@
-using BookStore.Domain;
+using BookStore.Domain.Interfaces;
 using BookStore.Memory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
