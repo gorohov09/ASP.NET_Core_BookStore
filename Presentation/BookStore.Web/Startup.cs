@@ -49,6 +49,8 @@ namespace BookStore.Web
 
             app.UseEndpoints(endpoints =>
             {
+                //controller/action/{id}
+                //book/index
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

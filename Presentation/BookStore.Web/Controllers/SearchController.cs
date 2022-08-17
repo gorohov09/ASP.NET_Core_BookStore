@@ -12,10 +12,14 @@ namespace BookStore.Web.Controllers
             _bookService = bookRepository;
         }
 
+        //search/index?query=title
+        //IActionResult - готовая страница, набор заголовков(редирект), статусный код
         public IActionResult Index(string query)
         {
+            if (query == null)
+                return NotFound();
             var books = _bookService.GetAllByQuery(query);
-            return View(books);
+            return View("Index", books); //Вызвали представление на прямую
         }
     }
 }

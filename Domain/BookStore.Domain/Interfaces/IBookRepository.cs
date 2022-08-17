@@ -7,5 +7,7 @@ namespace BookStore.Domain.Interfaces
         Book[] GetAllByIsbn(string isbn);
 
         Book[] GetAllByTitleOrAuthor(string titleOrAuthor);
+
+        Book GetById(int id);
     }
 }

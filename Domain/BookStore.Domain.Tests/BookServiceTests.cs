@@ -17,10 +17,10 @@ namespace BookStore.Domain.Tests
             //Когда будет вызываться GetAllByIsbn() у объекта типа IBookRepository с любым строковым параметром
             //Верни массив книжек
             bookRepositoryStub.Setup(x => x.GetAllByIsbn(It.IsAny<string>()))
-                .Returns(new[] { new Book(1, "", "", "") });
+                .Returns(new[] { new Book(1, "", "", "", "", 0m) });
 
             bookRepositoryStub.Setup(x => x.GetAllByTitleOrAuthor(It.IsAny<string>()))
-                .Returns(new[] { new Book(2, "", "", "") });
+                .Returns(new[] { new Book(2, "", "", "", "", 0m) });
 
             var bookService = new BookService(bookRepositoryStub.Object);
             var validIsbn = "ISBN 12345-67890";
@@ -39,10 +39,10 @@ namespace BookStore.Domain.Tests
             //Когда будет вызываться GetAllByIsbn() у объекта типа IBookRepository с любым строковым параметром
             //Верни массив книжек
             bookRepositoryStub.Setup(x => x.GetAllByIsbn(It.IsAny<string>()))
-                .Returns(new[] { new Book(1, "", "", "") });
+                .Returns(new[] { new Book(1, "", "", "", "", 0m) });
 
             bookRepositoryStub.Setup(x => x.GetAllByTitleOrAuthor(It.IsAny<string>()))
-                .Returns(new[] { new Book(2, "", "", "") });
+                .Returns(new[] { new Book(2, "", "", "", "", 0m) });
 
             var bookService = new BookService(bookRepositoryStub.Object);
             var invalidIsbn = "12345-67890";
