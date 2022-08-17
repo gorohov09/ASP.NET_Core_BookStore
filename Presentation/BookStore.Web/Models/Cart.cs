@@ -7,6 +7,6 @@ namespace BookStore.Web.Models
     {
         public IDictionary<int, int> Items { get; set; } = new Dictionary<int, int>();
 
-        public decimal Amount { get; set; }
+        public decimal TotalSum { get; set; }
     }
 }
