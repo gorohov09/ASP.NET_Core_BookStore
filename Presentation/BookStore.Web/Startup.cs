@@ -7,9 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookStore.Web
 {
@@ -26,6 +23,15 @@ namespace BookStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+            //Добавление и настройка сессий
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20); //Время жизни сессии
+                options.Cookie.HttpOnly = true; //Доступ к кукам осуществляется только сервером
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddSingleton<IBookRepository, BookRepository>();
             services.AddSingleton<BookService>();
         }
@@ -46,6 +52,8 @@ namespace BookStore.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession(); //Включить сессии
 
             app.UseEndpoints(endpoints =>
             {
