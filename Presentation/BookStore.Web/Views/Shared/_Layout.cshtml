@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BookStore.Web.Extensions
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +18,9 @@
             </form>
             <span class="navbar-text ml-auto">
                 @{
-                    Cart cart = new Cart();
+                    Cart cart;
+                    if (!Context.Session.TryGetCart(out cart))
+                        cart = new Cart();
 
                     if (cart.Items.Count == 0)
                     {
@@ -25,7 +28,7 @@
                     }
                     else
                     {
-                       @:Товаров @cart.Items.Count на сумму @cart.TotalSum
+                       @:Товаров @cart.TotalCount на сумму @cart.TotalSum
                     }
                 }
             </span>
