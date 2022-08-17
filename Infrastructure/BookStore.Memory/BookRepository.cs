@@ -28,5 +28,10 @@ namespace BookStore.Memory
                                      || book.Title.Contains(query))
                                      .ToArray();
         }
+
+        public Book GetById(int id)
+        {
+            return _books.FirstOrDefault(book => book.Id == id);
+        }
     }
 }
