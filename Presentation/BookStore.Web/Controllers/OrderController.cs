@@ -17,7 +17,7 @@ namespace BookStore.Web.Controllers
             _orderRepository = orderRepository;
         }
 
-        public IActionResult Add(int id)
+        public IActionResult AddItem(int id)
         {
             Order order;
             Cart cart;
