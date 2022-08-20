@@ -34,5 +34,27 @@ namespace BookStore.Domain.Entities
             Id = id;
             _items = new List<OrderItem>(items);
         }
+
+        /// <summary>
+        /// Добавление элемента заказа в заказ
+        /// </summary>
+        /// <param name="book"></param>
+        /// <param name="count"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void AddItem(Book book, int count)
+        {
+            if (book == null)
+                throw new ArgumentNullException(nameof(book));
+
+            var item = _items.FirstOrDefault(o => book.Id == o.BookId);
+
+            if (item == null)
+                _items.Add(new OrderItem(book.Id, count, book.Price));
+            else
+            {
+                _items.Remove(item);
+                _items.Add(new OrderItem(book.Id, item.Count + count, item.Price));
+            }
+        }
     }
 }
