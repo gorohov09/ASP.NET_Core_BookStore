@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.Web.Controllers
 {
-    public class CartController : Controller
+    public class OrderController : Controller
     {
         private readonly IBookRepository _bookRepository;
         private readonly IOrderRepository _orderRepository;
 
-        public CartController(IBookRepository bookRepository, IOrderRepository orderRepository)
+        public OrderController(IBookRepository bookRepository, IOrderRepository orderRepository)
         {
             _bookRepository = bookRepository;
             _orderRepository = orderRepository;
