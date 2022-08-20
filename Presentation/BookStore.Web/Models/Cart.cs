@@ -6,10 +6,17 @@ namespace BookStore.Web.Models
 {
     public class Cart
     {
-        public IDictionary<int, int> Items { get; set; } = new Dictionary<int, int>();
+        public int OrderId { get;}
 
-        public decimal TotalSum { get; set; }
+        public int TotalCount { get; set; }
 
-        public int TotalCount => Items.Sum(x => x.Value);
+        public decimal TotalPrice { get; set; }
+
+        public Cart(int orderId)
+        {
+            OrderId = orderId;
+            TotalCount = 0;
+            TotalPrice = 0m;
+        }
     }
 }
