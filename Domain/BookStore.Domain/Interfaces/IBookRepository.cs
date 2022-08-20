@@ -1,4 +1,5 @@
 ﻿using BookStore.Domain.Entities;
+using System.Collections.Generic;
 
 namespace BookStore.Domain.Interfaces
 {
@@ -9,5 +10,7 @@ namespace BookStore.Domain.Interfaces
         Book[] GetAllByTitleOrAuthor(string titleOrAuthor);
 
         Book GetById(int id);
+
+        Book[] GetAllByIds(IEnumerable<int> ids);
     }
 }

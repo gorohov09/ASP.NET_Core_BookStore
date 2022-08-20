@@ -3,6 +3,7 @@ using BookStore.Domain.Interfaces;
 using BookStore.Web.Extensions;
 using BookStore.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace BookStore.Web.Controllers
 {
@@ -15,6 +16,38 @@ namespace BookStore.Web.Controllers
         {
             _bookRepository = bookRepository;
             _orderRepository = orderRepository;
+        }
+
+        public IActionResult Index()
+        {
+            if (HttpContext.Session.TryGetCart(out Cart cart)) //Если корзина существует, отображаем ее
+            {
+                var order = _orderRepository.GetById(cart.OrderId);
+
+                var model = new OrderVm
+                {
+                    Id = order.Id,
+                    TotalCount = order.TotalCount,
+                    TotalPrice = order.TotalPrice,
+                };
+
+                foreach (var orderItem in order.Items)
+                {
+                    var book = _bookRepository.GetById(orderItem.BookId);
+                    model.Items.Add(new OrderItemVm
+                    {
+                        BookId = orderItem.BookId,
+                        Price = orderItem.Price,
+                        Count = orderItem.Count,
+                        Author = book.Author,
+                        Title = book.Title,
+                    });
+                }
+
+                return View(model);
+            }
+
+            return View("Empty");
         }
 
         public IActionResult AddItem(int id)

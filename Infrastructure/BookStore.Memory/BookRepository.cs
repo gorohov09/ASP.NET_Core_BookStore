@@ -1,5 +1,6 @@
 ﻿using BookStore.Domain.Entities;
 using BookStore.Domain.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookStore.Memory
@@ -32,6 +33,12 @@ namespace BookStore.Memory
         public Book GetById(int id)
         {
             return _books.FirstOrDefault(book => book.Id == id);
+        }
+
+        public Book[] GetAllByIds(IEnumerable<int> ids)
+        {
+            return _books.Where(book => ids.Contains(book.Id))
+                .ToArray();
         }
     }
 }
